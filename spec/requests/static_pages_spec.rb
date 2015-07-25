@@ -27,7 +27,8 @@ describe "StaticPages" do
 
 		it {should have_content('about us')}
 		it {should have_selector('h1', text: 'about us')}
-		it {should have_selector('title', text: full_title('About Us'))}
+		it {should have_content('about')}
+		it {should have_selector('h1', text: 'about')}
 	end
 
 
@@ -43,5 +44,15 @@ describe "StaticPages" do
 		visit root_path
 		click_link "sample app"
 		page.should have_selector 'h1', text: 'sample app'
+		click_link "About"
+		page.should have_selector 'h1', text: 'about us'
+		click_link "Help"
+		page.should have_selector 'h1', text: 'Help'
+		click_link "contact"
+		page.should have_selector 'h1', text: 'Contact'
+		click_link "Home"
+		click_link "sign up now!"
+		page.should have_selector 'h1', text: 'Sign up'
+
 	end
 end
